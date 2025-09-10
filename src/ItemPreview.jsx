@@ -1,0 +1,255 @@
+import { Suspense } from "react"
+import { View, OrbitControls, ContactShadows } from "@react-three/drei"
+import { Model, ModelLighting } from "./Model"
+import {
+  ImageIcon,
+  ShoppingCart,
+  Heart,
+  ChevronRight,
+  Loader2,
+} from "lucide-react"
+
+// Empty State Component
+function EmptyState() {
+  return (
+    <div className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+      <div className="text-center max-w-xs">
+        <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center shadow-inner">
+          <ImageIcon className="w-8 h-8 md:w-10 md:h-10 text-gray-400" />
+        </div>
+        <h3 className="text-lg md:text-xl font-semibold text-gray-700 mb-2">
+          Preview Your Selection
+        </h3>
+        <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+          Choose a delicious dish from our menu to see it in 3D and learn more
+          about it
+        </p>
+      </div>
+    </div>
+  )
+}
+
+// Desktop Header Component
+function DesktopHeader({ selectedItem }) {
+  return (
+    <div className="hidden md:block bg-white/90 backdrop-blur-sm border-b border-amber-200/50 p-6">
+      <div className="flex items-start justify-between">
+        <div className="flex-1">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2 capitalize">
+            {selectedItem.name}
+          </h2>
+          <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-2xl">
+            {selectedItem.description}
+          </p>
+        </div>
+        <div className="ml-6 text-right">
+          <div className="text-3xl lg:text-4xl font-bold text-emerald-600 mb-2">
+            {selectedItem.currency} {selectedItem.price}
+          </div>
+          <span className="inline-block bg-emerald-100 text-emerald-700 text-sm font-medium px-4 py-2 rounded-full capitalize">
+            {selectedItem.category}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Mobile Title Component
+function MobileTitle({ selectedItem }) {
+  return (
+    <div className="md:hidden mb-4">
+      <h2 className="text-xl font-bold text-gray-800 mb-2 capitalize leading-tight">
+        {selectedItem.name}
+      </h2>
+      <p className="text-gray-600 text-sm leading-relaxed">
+        {selectedItem.description}
+      </p>
+    </div>
+  )
+}
+
+// Ingredients Section Component
+function IngredientsSection({ selectedItem }) {
+  return (
+    <div className="bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+        {/* Content Section */}
+        <div className="flex-1">
+          <h3 className="text-base md:text-xl font-semibold text-gray-800 mb-2 md:mb-3">
+            Ingredients & Preparation
+          </h3>
+          <div className="mb-3 md:mb-4">
+            <h4 className="text-sm md:text-base font-medium text-gray-700 mb-2">
+              Ingredients:
+            </h4>
+            <div className="flex flex-wrap gap-1 md:gap-2">
+              {selectedItem.ingredients?.map((ingredient, index) => (
+                <span
+                  key={index}
+                  className="bg-emerald-50 text-emerald-700 text-xs md:text-sm px-2 py-1 rounded-lg"
+                >
+                  {ingredient}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h4 className="text-sm md:text-base font-medium text-gray-700 mb-2">
+              Preparation:
+            </h4>
+            <p className="text-gray-600 text-xs md:text-base leading-relaxed">
+              {selectedItem.preparation ||
+                "Made with authentic Japanese ingredients and traditional cooking methods. Fresh, high-quality components sourced daily to ensure the best taste and presentation."}
+            </p>
+          </div>
+        </div>
+
+        {/* 3D Model Section */}
+        <div className="w-42  md:w-32 lg:w-56 flex-shrink-0 mt-4 md:mt-0">
+          <div className="w-full rounded-xl p-3 aspect-square shadow-lg border border-white/50">
+            {/* Square container for 3D model with size constraints */}
+            <MenuItem3d url={selectedItem.modelUrl} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Nutrition Section Component
+function NutritionSection({ selectedItem }) {
+  return (
+    <div className="bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg">
+      <h3 className="text-base md:text-xl font-semibold text-gray-800 mb-2 md:mb-3">
+        Nutritional Information
+      </h3>
+      <div className="grid grid-cols-3 gap-2 md:gap-3 text-xs md:text-sm">
+        <div className="text-center p-2 bg-emerald-50 rounded-lg">
+          <div className="font-semibold text-emerald-700 text-sm md:text-base">
+            {selectedItem.nutrition?.calories || 350}
+          </div>
+          <div className="text-gray-600 text-xs">Calories</div>
+        </div>
+        <div className="text-center p-2 bg-blue-50 rounded-lg">
+          <div className="font-semibold text-blue-700 text-sm md:text-base">
+            {selectedItem.nutrition?.protein || "15g"}
+          </div>
+          <div className="text-gray-600 text-xs">Protein</div>
+        </div>
+        <div className="text-center p-2 bg-orange-50 rounded-lg">
+          <div className="font-semibold text-orange-700 text-sm md:text-base">
+            {selectedItem.nutrition?.carbs || "45g"}
+          </div>
+          <div className="text-gray-600 text-xs">Carbs</div>
+        </div>
+      </div>
+      {selectedItem.nutrition && (
+        <div className="grid grid-cols-3 gap-2 md:gap-3 text-xs md:text-sm mt-2 md:mt-3">
+          <div className="text-center p-2 bg-purple-50 rounded-lg">
+            <div className="font-semibold text-purple-700 text-sm md:text-base">
+              {selectedItem.nutrition.fat}
+            </div>
+            <div className="text-gray-600 text-xs">Fat</div>
+          </div>
+          <div className="text-center p-2 bg-green-50 rounded-lg">
+            <div className="font-semibold text-green-700 text-sm md:text-base">
+              {selectedItem.nutrition.fiber}
+            </div>
+            <div className="text-gray-600 text-xs">Fiber</div>
+          </div>
+          <div className="text-center p-2 bg-red-50 rounded-lg">
+            <div className="font-semibold text-red-700 text-sm md:text-base">
+              {selectedItem.nutrition.sodium}
+            </div>
+            <div className="text-gray-600 text-xs">Sodium</div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Mobile Action Section Component
+function MobileActionSection({ selectedItem }) {
+  return (
+    <div className="md:hidden bg-white/60 backdrop-blur-sm rounded-xl p-3 shadow-lg">
+      <div className="flex items-center justify-between mb-3">
+        <span className="bg-emerald-100 text-emerald-700 text-xs font-medium px-2 py-1 rounded-full capitalize flex-shrink-0">
+          {selectedItem.category}
+        </span>
+        <span className="text-xl font-bold text-emerald-600 ml-2">
+          {selectedItem.currency} {selectedItem.price}
+        </span>
+      </div>
+
+      <div className="flex gap-2">
+        <button className="flex-1 bg-emerald-600 text-white font-medium py-2.5 px-3 rounded-lg hover:bg-emerald-700 transition-colors duration-200 flex items-center justify-center gap-2 text-sm">
+          <ShoppingCart className="w-4 h-4 flex-shrink-0" />
+          <span className="truncate">Add to Order</span>
+        </button>
+        <button className="bg-gray-100 text-gray-700 font-medium py-2.5 px-3 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex-shrink-0">
+          <Heart className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function ItemPreview({ selectedItem }) {
+  if (!selectedItem) {
+    return <EmptyState />
+  }
+
+  return (
+    <div className="flex-1 bg-gradient-to-br from-amber-50 to-orange-50 relative overflow-hidden">
+      {/* Background Image */}
+      <img
+        src={selectedItem.thumbnail}
+        alt={selectedItem.name}
+        className="absolute inset-0 w-full h-full object-cover blur-md opacity-30"
+      />
+
+      {/* Content Overlay */}
+      <div className="relative z-10 h-full flex flex-col">
+        <DesktopHeader selectedItem={selectedItem} />
+
+        {/* Main Content Section */}
+        <div className="flex-1 flex flex-col p-4 md:p-8 min-h-0 overflow-y-auto">
+          {/* Main Content Area */}
+          <div className="flex-1 w-full max-w-none">
+            <MobileTitle selectedItem={selectedItem} />
+
+            {/* Additional Details */}
+            <div className="space-y-3 md:space-y-6">
+              <IngredientsSection selectedItem={selectedItem} />
+              <NutritionSection selectedItem={selectedItem} />
+              {/* <MobileActionSection selectedItem={selectedItem} /> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MenuItem3d({ url }) {
+  return (
+    <View className="w-full h-full overflow-hidden">
+      <ModelLighting />
+      <Suspense fallback={null}>
+        <Model url={url} />
+      </Suspense>
+      <OrbitControls
+        makeDefault
+        enablePan={false}
+        enableZoom={false}
+        autoRotate={true}
+        autoRotateSpeed={1}
+        enableDamping={true}
+      />
+    </View>
+  )
+}
+
+export default ItemPreview
