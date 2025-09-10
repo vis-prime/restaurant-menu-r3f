@@ -1,4 +1,5 @@
 import { MenuItems } from "./assets/menuItems"
+import { motion } from "motion/react"
 
 // list of menu items for user to select from
 function Menu({ setSelectedItem }) {
@@ -22,10 +23,17 @@ function Menu({ setSelectedItem }) {
         {/* Menu Items Grid */}
         <div className="flex md:grid md:grid-cols-1 gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible overflow-y-hidden md:overflow-y-visible pb-2 md:pb-0 h-full md:h-auto">
           {MenuItems[0].map((item, index) => (
-            <div
+            <motion.div
               onClick={() => handleItemClick(item)}
               key={item.id}
               className="group bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 md:p-6 flex flex-col cursor-pointer border border-gray-100 hover:border-emerald-200 transform hover:-translate-y-1 flex-shrink-0 w-40 md:w-auto"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: 1.2 + index * 0.1,
+                ease: "easeOut",
+              }}
             >
               {/* Item Image */}
               <div className="relative mb-2 md:mb-4 overflow-hidden rounded-lg md:rounded-xl aspect-square">
@@ -92,7 +100,7 @@ function Menu({ setSelectedItem }) {
                   />
                 </svg>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

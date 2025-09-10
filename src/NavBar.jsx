@@ -1,22 +1,49 @@
-import { OrbitControls, Sparkles, View } from "@react-three/drei"
+import { OrbitControls, View } from "@react-three/drei"
 import { Model, ModelLighting } from "./Model"
 import { Cherry } from "lucide-react"
+import { motion } from "motion/react"
 
 function NavBar() {
   return (
     <div className="flex flex-col items-center justify-center py-2 md:py-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 border-b-2 border-emerald-200/60 flex-shrink-0 shadow-sm backdrop-blur-sm">
-      <div className="flex flex-row items-center justify-center gap-3 group">
-        <Cherry className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-emerald-600 group-hover:text-emerald-700 transition-colors duration-300 ease-in-out drop-shadow-sm" />
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide text-gray-800 drop-shadow-sm group-hover:text-emerald-700 transition-colors duration-300 ease-in-out">
+      <motion.div
+        className="flex flex-row items-center justify-center gap-3 group"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.div
+          whileHover={{ rotate: 360, scale: 1.1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <Cherry className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-emerald-600 group-hover:text-emerald-700 transition-colors duration-300 ease-in-out drop-shadow-sm" />
+        </motion.div>
+        <motion.h1
+          className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide text-gray-800 drop-shadow-sm group-hover:text-emerald-700 transition-colors duration-300 ease-in-out"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          whileHover={{ scale: 1.05 }}
+        >
           Sakura Dining
-        </h1>
+        </motion.h1>
         <div className="transform group-hover:scale-105 transition-transform duration-300 ease-in-out">
           <NavBarModel />
         </div>
-      </div>
-      <p className="text-gray-600 text-sm md:text-base mb-1 md:mb-2 font-medium tracking-wide opacity-90 hover:opacity-100 transition-opacity duration-200">
+      </motion.div>
+      <motion.p
+        className="text-gray-600 text-sm md:text-base mb-1 md:mb-2 font-medium tracking-wide opacity-90 hover:opacity-100 transition-opacity duration-200"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 0.9, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        whileHover={{
+          opacity: 1,
+          scale: 1.02,
+          transition: { duration: 0.2 },
+        }}
+      >
         Authentic Japanese Cuisine
-      </p>
+      </motion.p>
     </div>
   )
 }
