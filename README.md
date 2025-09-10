@@ -1,12 +1,78 @@
-# React + Vite
+# Restaurant Menu R3F
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive 3D restaurant menu application built with React Three Fiber (R3F), featuring 3D food models and smooth animations.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you begin, ensure you have the following installed:
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) (version 16 or higher)
+- npm (comes with Node.js) or [yarn](https://yarnpkg.com/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/vis-prime/restaurant-menu-r3f.git
+cd restaurant-menu-r3f
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+## Running Locally
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+This will start the development server at `http://localhost:5173` (or another available port). The server runs with `--host` flag, making it accessible from other devices on your network.
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check for code issues
+- `npm run deploy` - Build and deploy to GitHub Pages
+
+## Project Structure
+
+```
+src/
+├── App.jsx          # Main application component
+├── Menu.tsx         # Menu component (TypeScript)
+├── Model.jsx        # 3D model components
+├── ItemPreview.jsx  # Food item preview component
+├── NavBar.jsx       # Navigation component
+└── assets/
+    └── menuItems.js # Menu data configuration
+```
+
+## Technologies Used
+
+- **React** - UI library
+- **React Three Fiber** - React renderer for Three.js
+- **React Three Drei** - Useful helpers for R3F
+- **Three.js** - 3D graphics library
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Lenis** - Smooth scrolling library
+- **Motion** - Animation library
+- **TypeScript** - Type safety (partial implementation)
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory, ready to be deployed to any static hosting service.
