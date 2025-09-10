@@ -2,7 +2,7 @@ import { MenuItems } from "./assets/menuItems"
 import { motion } from "motion/react"
 
 // list of menu items for user to select from
-function Menu({ setSelectedItem }) {
+function Menu({ selectedItem, setSelectedItem }) {
   const handleItemClick = (item) => {
     setSelectedItem(item)
   }
@@ -26,7 +26,9 @@ function Menu({ setSelectedItem }) {
             <motion.div
               onClick={() => handleItemClick(item)}
               key={item.id}
-              className="group bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 md:p-6 flex flex-col cursor-pointer border border-gray-100 hover:border-emerald-200 transform hover:-translate-y-1 flex-shrink-0 w-40 md:w-auto"
+              className={`group bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 md:p-6 flex flex-col cursor-pointer border border-gray-100 hover:border-emerald-200 transform hover:-translate-y-1 flex-shrink-0 w-40 md:w-auto ${
+                selectedItem?.id === item.id ? "ring-4 ring-emerald-400" : ""
+              }`}
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{

@@ -27,7 +27,7 @@ function App() {
       <div className="h-screen flex flex-col">
         <NavBar />
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
-          <Menu setSelectedItem={setSelectedItem} />
+          <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
           <ItemPreview selectedItem={selectedItem} />
         </div>
       </div>

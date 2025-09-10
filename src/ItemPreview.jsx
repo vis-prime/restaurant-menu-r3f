@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import { View, OrbitControls, ContactShadows } from "@react-three/drei"
 import { Model, ModelLighting } from "./Model"
+import { motion, AnimatePresence } from "motion/react"
 import {
   ImageIcon,
   ShoppingCart,
@@ -106,11 +107,22 @@ function IngredientsSection({ selectedItem }) {
         </div>
 
         {/* 3D Model Section */}
-        <div className="w-42  md:w-32 lg:w-56 flex-shrink-0 mt-4 md:mt-0">
-          <div className="w-full rounded-xl p-3 aspect-square shadow-lg border border-white/50">
+        <div className="w-42  md:w-32 lg:w-56 flex-shrink-0 mt-4 md:mt-0 overflow-hidden">
+          <motion.div
+            className="w-full rounded-xl p-3 aspect-square shadow-lg border border-white/50"
+            key={`model-${selectedItem.id}`}
+            initial={{ x: 500 }}
+            animate={{ x: 0 }}
+            exit={{ x: 500 }}
+            transition={{
+              duration: 0.4,
+              delay: 0.1,
+              ease: "easeInOut",
+            }}
+          >
             {/* Square container for 3D model with size constraints */}
             <MenuItem3d url={selectedItem.modelUrl} />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -177,32 +189,43 @@ function ItemPreview({ selectedItem }) {
 
   return (
     <div className="flex-1 bg-gradient-to-br from-emerald-50 to-teal-50 relative overflow-hidden">
-      {/* Background Image */}
-      <img
-        src={selectedItem.thumbnail}
-        alt={selectedItem.name}
-        className="absolute inset-0 w-full h-full object-cover blur-md opacity-30"
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedItem.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          {/* Background Image */}
+          <img
+            src={selectedItem.thumbnail}
+            alt={selectedItem.name}
+            className="absolute inset-0 w-full h-full object-cover blur-md opacity-30"
+          />
 
-      {/* Content Overlay */}
-      <div className="relative z-10 h-full flex flex-col">
-        <DesktopHeader selectedItem={selectedItem} />
+          {/* Content Overlay */}
+          <div className="relative z-10 h-full flex flex-col">
+            <DesktopHeader selectedItem={selectedItem} />
 
-        {/* Main Content Section */}
-        <div className="flex-1 flex flex-col p-4 md:p-8 min-h-0 overflow-y-auto">
-          {/* Main Content Area */}
-          <div className="flex-1 w-full max-w-none">
-            <MobileTitle selectedItem={selectedItem} />
+            {/* Main Content Section */}
+            <div className="flex-1 flex flex-col p-4 md:p-8 min-h-0 overflow-y-auto">
+              {/* Main Content Area */}
+              <div className="flex-1 w-full max-w-none">
+                <MobileTitle selectedItem={selectedItem} />
 
-            {/* Additional Details */}
-            <div className="space-y-3 md:space-y-6">
-              <IngredientsSection selectedItem={selectedItem} />
-              <NutritionSection selectedItem={selectedItem} />
-              {/* <MobileActionSection selectedItem={selectedItem} /> */}
+                {/* Additional Details */}
+                <div className="space-y-3 md:space-y-6">
+                  <IngredientsSection selectedItem={selectedItem} />
+                  <NutritionSection selectedItem={selectedItem} />
+                  {/* <MobileActionSection selectedItem={selectedItem} /> */}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
