@@ -18,7 +18,7 @@ function Menu({ setSelectedItem }) {
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-hidden md:overflow-y-auto pt-1 md:pt-2 px-4 md:px-6 pb-4 md:pb-6">
+      <div className="flex-1 overflow-hidden md:overflow-y-auto pt-1 md:pt-2 px-4 md:px-6 pb-4 md:pb-6 min-h-0">
         {/* Menu Items Grid */}
         <div className="flex md:grid md:grid-cols-1 gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible overflow-y-hidden md:overflow-y-visible pb-2 md:pb-0 h-full md:h-auto">
           {MenuItems[0].map((item, index) => (

@@ -170,32 +170,6 @@ function NutritionSection({ selectedItem }) {
   )
 }
 
-// Mobile Action Section Component
-function MobileActionSection({ selectedItem }) {
-  return (
-    <div className="md:hidden bg-white/60 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-      <div className="flex items-center justify-between mb-3">
-        <span className="bg-emerald-100 text-emerald-700 text-xs font-medium px-2 py-1 rounded-full capitalize flex-shrink-0">
-          {selectedItem.category}
-        </span>
-        <span className="text-xl font-bold text-emerald-600 ml-2">
-          {selectedItem.currency} {selectedItem.price}
-        </span>
-      </div>
-
-      <div className="flex gap-2">
-        <button className="flex-1 bg-emerald-600 text-white font-medium py-2.5 px-3 rounded-lg hover:bg-emerald-700 transition-colors duration-200 flex items-center justify-center gap-2 text-sm">
-          <ShoppingCart className="w-4 h-4 flex-shrink-0" />
-          <span className="truncate">Add to Order</span>
-        </button>
-        <button className="bg-gray-100 text-gray-700 font-medium py-2.5 px-3 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex-shrink-0">
-          <Heart className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  )
-}
-
 function ItemPreview({ selectedItem }) {
   if (!selectedItem) {
     return <EmptyState />
