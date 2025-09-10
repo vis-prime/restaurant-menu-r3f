@@ -3,7 +3,7 @@ export const MenuItems = [
     id: 1,
     name: "kamo soba",
     price: 12,
-    currency: "USD",
+    currency: "$",
     description:
       "Chilled buckwheat noodles served with a flavorful dipping sauce and tender slices of duck breast.",
     category: "main",
@@ -34,7 +34,7 @@ export const MenuItems = [
     id: 2,
     name: "kamo udon",
     price: 13,
-    currency: "USD",
+    currency: "$",
     description:
       "Thick wheat noodles served with savory duck breast slices in a rich broth.",
     category: "main",
@@ -65,7 +65,7 @@ export const MenuItems = [
     id: 3,
     name: "kitsune soba",
     price: 10,
-    currency: "USD",
+    currency: "$",
     description:
       "Buckwheat noodles topped with sweet fried tofu in a light soy-based broth.",
     category: "main",
@@ -96,7 +96,7 @@ export const MenuItems = [
     id: 4,
     name: "kitsune udon",
     price: 11,
-    currency: "USD",
+    currency: "$",
     description:
       "Thick wheat noodles with sweet fried tofu in a delicate broth.",
     category: "main",
