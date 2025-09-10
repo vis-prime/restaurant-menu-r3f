@@ -18,7 +18,7 @@ function NavBar() {
           <Cherry className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-emerald-600  drop-shadow-sm" />
         </motion.div>
         <motion.h1
-          className="text-2xl md:text-3xl lg:text-5xl font-bold tracking-wide text-gray-800 drop-shadow-sm select-none "
+          className="text-xl md:text-3xl lg:text-5xl font-bold tracking-wide text-gray-800 drop-shadow-sm select-none "
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -57,6 +57,9 @@ function NavBarModel() {
           enablePan={false}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
+          autoRotate={true}
+          autoRotateSpeed={1}
+          enableDamping={true}
         />
       </View>
       <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-300 rounded-full opacity-60 animate-pulse"></div>

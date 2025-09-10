@@ -209,7 +209,7 @@ function MenuItem3d({ url }) {
         enablePan={false}
         enableZoom={false}
         autoRotate={true}
-        autoRotateSpeed={0.2}
+        autoRotateSpeed={1}
         enableDamping={true}
         maxPolarAngle={Math.PI / 2}
       />

@@ -5,15 +5,11 @@ import {
   PerspectiveCamera,
   useGLTF,
 } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
 import { Suspense } from "react"
 
 function Model({ url, ...props }) {
   const { scene } = useGLTF(url)
 
-  useFrame((state, delta) => {
-    scene.rotation.y += delta * 0.2
-  })
   return (
     <Suspense fallback={null}>
       <Center>
