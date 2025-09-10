@@ -6,6 +6,7 @@ import {
   useGLTF,
 } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
+import { Suspense } from "react"
 
 function Model({ url, ...props }) {
   const { scene } = useGLTF(url)
@@ -14,10 +15,12 @@ function Model({ url, ...props }) {
     scene.rotation.y += delta * 0.2
   })
   return (
-    <Center>
-      <primitive object={scene} {...props} />
-      <ContactShadows opacity={0.2} scale={0.2} blur={2} far={1} />
-    </Center>
+    <Suspense fallback={null}>
+      <Center>
+        <primitive object={scene} {...props} />
+        <ContactShadows opacity={0.2} scale={0.2} blur={2} far={1} />
+      </Center>
+    </Suspense>
   )
 }
 

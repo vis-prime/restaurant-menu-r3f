@@ -1,6 +1,8 @@
 import { OrbitControls, View } from "@react-three/drei"
 import { Model, ModelLighting } from "./Model"
 import { Cherry } from "lucide-react"
+
+// eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react"
 
 function NavBar() {
