@@ -32,28 +32,13 @@ To start the development server:
 npm run dev
 ```
 
-This will start the development server at `http://localhost:5173` (or another available port). The server runs with `--host` flag, making it accessible from other devices on your network.
+This will start the development server at `https://localhost:3000` (or another available port). The server runs with `--host` flag, making it accessible from other devices on your network.
 
 ## Available Scripts
 
 - `npm run dev` - Start the development server
 - `npm run build` - Build the project for production
 - `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint to check for code issues
-- `npm run deploy` - Build and deploy to GitHub Pages
-
-## Project Structure
-
-```
-src/
-├── App.jsx          # Main application component
-├── Menu.tsx         # Menu component (TypeScript)
-├── Model.jsx        # 3D model components
-├── ItemPreview.jsx  # Food item preview component
-├── NavBar.jsx       # Navigation component
-└── assets/
-    └── menuItems.js # Menu data configuration
-```
 
 ## Technologies Used
 
@@ -63,9 +48,7 @@ src/
 - **Three.js** - 3D graphics library
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
-- **Lenis** - Smooth scrolling library
 - **Motion** - Animation library
-- **TypeScript** - Type safety (partial implementation)
 
 ## Building for Production
 
