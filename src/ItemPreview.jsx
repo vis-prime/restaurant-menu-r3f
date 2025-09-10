@@ -32,7 +32,7 @@ function EmptyState() {
 // Desktop Header Component
 function DesktopHeader({ selectedItem }) {
   return (
-    <div className="hidden md:block bg-white/90 backdrop-blur-sm border-b border-amber-200/50 p-6">
+    <div className="hidden md:block bg-white/90 backdrop-blur-sm border-b border-emerald-200/50 p-6">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2 capitalize">
@@ -73,7 +73,7 @@ function MobileTitle({ selectedItem }) {
 function IngredientsSection({ selectedItem }) {
   return (
     <div className="bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg">
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 justify-center items-center">
         {/* Content Section */}
         <div className="flex-1">
           <h3 className="text-base md:text-xl font-semibold text-gray-800 mb-2 md:mb-3">
@@ -131,14 +131,14 @@ function NutritionSection({ selectedItem }) {
           </div>
           <div className="text-gray-600 text-xs">Calories</div>
         </div>
-        <div className="text-center p-2 bg-blue-50 rounded-lg">
-          <div className="font-semibold text-blue-700 text-sm md:text-base">
+        <div className="text-center p-2 bg-teal-50 rounded-lg">
+          <div className="font-semibold text-teal-700 text-sm md:text-base">
             {selectedItem.nutrition?.protein || "15g"}
           </div>
           <div className="text-gray-600 text-xs">Protein</div>
         </div>
-        <div className="text-center p-2 bg-orange-50 rounded-lg">
-          <div className="font-semibold text-orange-700 text-sm md:text-base">
+        <div className="text-center p-2 bg-emerald-50 rounded-lg">
+          <div className="font-semibold text-emerald-700 text-sm md:text-base">
             {selectedItem.nutrition?.carbs || "45g"}
           </div>
           <div className="text-gray-600 text-xs">Carbs</div>
@@ -146,20 +146,20 @@ function NutritionSection({ selectedItem }) {
       </div>
       {selectedItem.nutrition && (
         <div className="grid grid-cols-3 gap-2 md:gap-3 text-xs md:text-sm mt-2 md:mt-3">
-          <div className="text-center p-2 bg-purple-50 rounded-lg">
-            <div className="font-semibold text-purple-700 text-sm md:text-base">
+          <div className="text-center p-2 bg-slate-50 rounded-lg">
+            <div className="font-semibold text-slate-700 text-sm md:text-base">
               {selectedItem.nutrition.fat}
             </div>
             <div className="text-gray-600 text-xs">Fat</div>
           </div>
-          <div className="text-center p-2 bg-green-50 rounded-lg">
-            <div className="font-semibold text-green-700 text-sm md:text-base">
+          <div className="text-center p-2 bg-emerald-50 rounded-lg">
+            <div className="font-semibold text-emerald-700 text-sm md:text-base">
               {selectedItem.nutrition.fiber}
             </div>
             <div className="text-gray-600 text-xs">Fiber</div>
           </div>
-          <div className="text-center p-2 bg-red-50 rounded-lg">
-            <div className="font-semibold text-red-700 text-sm md:text-base">
+          <div className="text-center p-2 bg-gray-50 rounded-lg">
+            <div className="font-semibold text-gray-700 text-sm md:text-base">
               {selectedItem.nutrition.sodium}
             </div>
             <div className="text-gray-600 text-xs">Sodium</div>
@@ -176,7 +176,7 @@ function ItemPreview({ selectedItem }) {
   }
 
   return (
-    <div className="flex-1 bg-gradient-to-br from-amber-50 to-orange-50 relative overflow-hidden">
+    <div className="flex-1 bg-gradient-to-br from-emerald-50 to-teal-50 relative overflow-hidden">
       {/* Background Image */}
       <img
         src={selectedItem.thumbnail}
