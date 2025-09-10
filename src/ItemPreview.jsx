@@ -1,15 +1,9 @@
 import { Suspense } from "react"
-import { View, OrbitControls, ContactShadows } from "@react-three/drei"
+import { View, OrbitControls } from "@react-three/drei"
 import { Model, ModelLighting } from "./Model"
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "motion/react"
-import {
-  ImageIcon,
-  ShoppingCart,
-  Heart,
-  ChevronRight,
-  Loader2,
-} from "lucide-react"
+import { Soup } from "lucide-react"
 
 // Empty State Component
 function EmptyState() {
@@ -17,7 +11,7 @@ function EmptyState() {
     <div className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
       <div className="text-center max-w-xs">
         <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center shadow-inner">
-          <ImageIcon className="w-8 h-8 md:w-10 md:h-10 text-gray-400" />
+          <Soup className="w-8 h-8 md:w-10 md:h-10 text-gray-400" />
         </div>
         <h3 className="text-lg md:text-xl font-semibold text-gray-700 mb-2">
           Preview Your Selection
@@ -89,7 +83,7 @@ function IngredientsSection({ selectedItem }) {
               {selectedItem.ingredients?.map((ingredient, index) => (
                 <span
                   key={index}
-                  className="bg-emerald-50 text-emerald-700 text-xs md:text-sm px-2 py-1 rounded-lg"
+                  className="bg-emerald-50 shadow-sm text-emerald-700 text-xs md:text-sm px-2 py-1 rounded-lg"
                 >
                   {ingredient}
                 </span>
@@ -140,7 +134,10 @@ function NutritionSection({ selectedItem }) {
       </h3>
       <div className="grid grid-cols-3 gap-2 md:gap-3 text-xs md:text-sm">
         {Object.entries(selectedItem.nutrition).map(([key, value]) => (
-          <div key={key} className="text-center p-2 bg-emerald-50 rounded-lg">
+          <div
+            key={key}
+            className="text-center p-2 bg-emerald-50 rounded-lg shadow-sm"
+          >
             <div className="font-semibold text-emerald-700 text-sm md:text-base">
               {value}
             </div>
@@ -214,6 +211,7 @@ function MenuItem3d({ url }) {
         autoRotate={true}
         autoRotateSpeed={0.2}
         enableDamping={true}
+        maxPolarAngle={Math.PI / 2}
       />
     </View>
   )

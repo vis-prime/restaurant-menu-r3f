@@ -24,7 +24,7 @@ function Model({ url, ...props }) {
   )
 }
 
-function ModelLighting({ color, cameraPos = [0, 0.3, 0.3] }) {
+function ModelLighting({ color, cameraPos = [0, 0.275, 0.275] }) {
   return (
     <>
       {color && <color attach="background" args={[color]} />}
