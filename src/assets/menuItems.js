@@ -8,8 +8,8 @@ export const MenuItems = [
       description:
         "Chilled buckwheat noodles served with a flavorful dipping sauce and tender slices of duck breast.",
       category: "main",
-      thumbnail: "/kamosoba.webp",
-      modelUrl: "/kamosoba.glb",
+      thumbnail: "./kamosoba.webp",
+      modelUrl: "./kamosoba.glb",
       ingredients: [
         "Fresh buckwheat noodles",
         "Premium duck breast",
@@ -39,8 +39,8 @@ export const MenuItems = [
       description:
         "Thick wheat noodles served with savory duck breast slices in a rich broth.",
       category: "main",
-      thumbnail: "/kamoudon.webp",
-      modelUrl: "/kamoudon.glb",
+      thumbnail: "./kamoudon.webp",
+      modelUrl: "./kamoudon.glb",
       ingredients: [
         "Fresh udon noodles",
         "Premium duck breast",
@@ -70,8 +70,8 @@ export const MenuItems = [
       description:
         "Buckwheat noodles topped with sweet fried tofu in a light soy-based broth.",
       category: "main",
-      thumbnail: "/kitsunesoba.webp",
-      modelUrl: "/kitsunesoba.glb",
+      thumbnail: "./kitsunesoba.webp",
+      modelUrl: "./kitsunesoba.glb",
       ingredients: [
         "Fresh buckwheat noodles",
         "Aburaage (fried tofu)",
@@ -101,8 +101,8 @@ export const MenuItems = [
       description:
         "Thick wheat noodles with sweet fried tofu in a delicate broth.",
       category: "main",
-      thumbnail: "/kitsuneudon.webp",
-      modelUrl: "/kitsuneudon.glb",
+      thumbnail: "./kitsuneudon.webp",
+      modelUrl: "./kitsuneudon.glb",
       ingredients: [
         "Fresh udon noodles",
         "Aburaage (fried tofu)",
