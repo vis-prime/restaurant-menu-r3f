@@ -44,12 +44,12 @@ function NavBar() {
 function NavBarModel() {
   return (
     <motion.div
-      className="relative"
+      className="relative overflow-hidden"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 2, delay: 2, ease: "easeOut" }}
     >
-      <View className="w-24 h-16 md:w-32 md:h-24 inline-block overflow-hidden">
+      <View className="w-24 h-16 md:w-32 md:h-24 inline-block ">
         <ModelLighting cameraPos={[0, 0.1, 0.3]} />
         <Model url="./riceball_comp.glb" />
         <OrbitControls
@@ -62,11 +62,6 @@ function NavBarModel() {
           enableDamping={true}
         />
       </View>
-      <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-300 rounded-full opacity-60 animate-pulse"></div>
-      <div
-        className="absolute -bottom-1 -left-1 w-2 h-2 bg-teal-300 rounded-full opacity-50 animate-pulse"
-        style={{ animationDelay: "0.5s" }}
-      ></div>
     </motion.div>
   )
 }

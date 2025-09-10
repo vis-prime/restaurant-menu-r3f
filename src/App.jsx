@@ -19,7 +19,7 @@ function App() {
         <View.Port />
       </Canvas>
 
-      <div className="h-screen flex flex-col">
+      <div className="h-[100lvh] flex flex-col">
         <NavBar />
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
           <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
